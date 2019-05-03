@@ -1,5 +1,7 @@
 package series.serie2.parte1;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertIterableEquals;
 import static series.serie2.parte1.IterableUtils.filterBy;
 import java.util.*;
@@ -27,7 +29,14 @@ public class FilterByTest {
     @Test
     public void filterBy_withEqualSequences(){
         assertIterableEquals(SEmpty,filterBy( SEquals, SEquals, (x,y) -> x> y));
-        assertIterableEquals(SEquals,filterBy( SEquals, SEquals , (x,y) -> x== y));
+        assertIterableEquals2(SEquals,filterBy( SEquals, SEquals , (x,y) -> x== y));
+    }
+
+    private void assertIterableEquals2(List<Integer> sEquals, Iterable<Integer> filterBy) {
+        Iterator<Integer> i= sEquals.iterator();
+        for(Integer v: filterBy ) {
+            assertEquals(v, i.next());
+        }
     }
 
     @Test
